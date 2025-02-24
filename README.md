@@ -1,7 +1,7 @@
 <h1 align="center">
   <br/>
   
-  AWS lambda sqs publisher consumer 
+  AWS Lambda SQS Publisher Consumer
 </h1>
 
 <p align="center">
