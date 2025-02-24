@@ -42,7 +42,7 @@ This project is a serverless application built with AWS Lambda and SQS to demons
 
 To ensure resilience, a Dead Letter Queue (DLQ) is used to capture and manage failed message deliveries, providing better error handling and recovery.
 
-The solution is implemented using the Serverless Framework for easy deployment and management of resources in the cloud. The goal is to demonstrate and study best practices in serverless architecture, messaging systems, asynchronous processing, and robust error management.
+The solution is implemented using the Serverless Framework for easy deployment and management of resources in the cloud. The goal is study best practices in serverless architecture, messaging systems, asynchronous processing, and robust error management.
 
 Architecture preview:
 
