@@ -1,0 +1,56 @@
+service: aws-lambda-sqs-publisher-consumer
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  stage: 'dev'
+  region: 'us-east-1'
+  memorySize: 128
+  timeout: 3
+  environment:
+    QUEUE_URL: !Ref MessageQueue
+    DLQ_URL: !Ref MessageQueueDLQ
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - sqs:SendMessage
+        - sqs:GetQueueAttributes
+      Resource: 
+        - !GetAtt MessageQueue.Arn
+        - !GetAtt MessageQueueDLQ.Arn
+
+functions:
+  publisher:
+    handler: app/handlers/publisher.handler
+    description: Publish a message to the SQS queue
+    memorySize: 128
+    timeout: 3
+    events:
+      - http:
+          path: publish
+          method: post
+
+  consumer:
+    handler: app/handlers/consumer.handler
+    description: Process messages from the SQS queue
+    memorySize: 128
+    timeout: 3
+    events:
+      - sqs:
+          arn: !GetAtt MessageQueue.Arn
+          batchSize: 5
+
+resources:
+  Resources:
+    MessageQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: MessageQueue-${self:provider.stage}
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt MessageQueueDLQ.Arn
+          maxReceiveCount: 3 
+
+    MessageQueueDLQ:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: MessageQueueDLQ-${self:provider.stage}
