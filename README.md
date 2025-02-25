@@ -38,7 +38,7 @@ AWS Lambda SQS Publisher Consumer was developed with these technologies:
 
 ## 💻 Project
 
-This project is a serverless application built with AWS Lambda and SQS to demonstrate a simple publisher-consumer architecture. The publisher sends messages to an SQS queue, and the consumer processes the messages from the queue. It showcases how to implement scalable and decoupled systems using AWS services.
+This project is a serverless application using AWS Lambda and SQS to study and implement a simple publisher-consumer architecture. The publisher sends messages to an SQS queue, and the consumer processes the messages from the queue. It showcases how to implement scalable and decoupled systems using AWS services.
 
 To ensure resilience, a Dead Letter Queue (DLQ) is used to capture and manage failed message deliveries, providing better error handling and recovery.
 
@@ -47,18 +47,6 @@ The solution is implemented using the Serverless Framework for easy deployment a
 Architecture preview:
 
 ![Architecture Preview](.github/img/architecture-preview.png)
-
-## 💻 Functions and Queue Preview
-
-Here are some previews of the functions and queues in the project:
-
-![Functions Preview](.github/img/functions-preview.png)
-
-This image shows an overview of the functions in the AWS Lambda publisher-consumer architecture.
-
-![Queues Preview](.github/img/queues-preview.png)
-
-This image illustrates the SQS queues setup, including the dead letter queue for enhanced resilience.
 
 
 ## :boom: Installation
